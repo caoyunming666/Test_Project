@@ -12,10 +12,26 @@
     <!--bootstrap要求jquery的版本不低于1.9.1-->
     <script src="./js/jquery-1.9.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
+    <!--本次更新：使用requirejs异步按需加载js文件,小型项目不适合使用此方式-->
+    <script src="./js/require.js"></script>
 </head>
 
 <body>
 
+
+    <script>
+        require.config({
+            baseUrl: './js/',
+            paths: {
+                'dateUtil': 'formateDate'
+            }
+        });
+
+        require(['dateUtil'], function (dateUtil) {
+            //加载 formateDate.js 文件，格式化输出当前时间
+            console.log(dateUtil.format("yyyy-MM-dd", new Date()));
+        });
+    </script>
 </body>
 
 </html>
